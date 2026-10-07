@@ -1,358 +1,466 @@
 <!doctype html>
 <html lang="id">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>SIAKAD - Master Data Unit</title>
 
     <!-- Custom fonts -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet" />
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900"
+      rel="stylesheet"
+    />
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
 
     <style>
-        .table thead.thead-siakad th {
-            background-color: #3e454d !important;
-            color: #ffffff !important;
-            vertical-align: middle;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 9px !important;
-            white-space: nowrap !important;
-        }
+      .table thead.thead-siakad th {
+        background-color: #3e454d !important;
+        color: #ffffff !important;
+        vertical-align: middle;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 9px !important;
+        white-space: nowrap !important;
+      }
 
-        .badge-kode {
-            background-color: #eff6ff;
-            color: #3b66de;
-            border: 1px solid #bfdbfe;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            display: inline-block;
-        }
+      .badge-kode {
+        background-color: #eff6ff;
+        color: #3b66de;
+        border: 1px solid #bfdbfe;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        display: inline-block;
+      }
 
-        /* Badge Status (Hanya 2: Tersedia dan Dipinjam) */
-        .badge-status-asset {
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: white;
-            display: inline-block;
-        }
+      /* Badge Status (Hanya 2: Tersedia dan Dipinjam) */
+      .badge-status-asset {
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: white;
+        display: inline-block;
+      }
 
-        .badge-tersedia {
-            background-color: #10b981;
-        }
+      .badge-tersedia {
+        background-color: #10b981;
+      }
 
-        .badge-disewa {
-            background-color: #f59e0b;
-        }
+      .badge-disewa {
+        background-color: #f59e0b;
+      }
 
-        /* Badge Kondisi */
-        .badge-kondisi {
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.78rem;
-        }
+      /* Badge Kondisi */
+      .badge-kondisi {
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.78rem;
+      }
 
-        .kondisi-baik {
-            background-color: #e0f2fe;
-            color: #0284c7;
-        }
+      .kondisi-baik {
+        background-color: #e0f2fe;
+        color: #0284c7;
+      }
 
-        .kondisi-rusak {
-            background-color: #fee2e2;
-            color: #dc2626;
-        }
+      .kondisi-rusak {
+        background-color: #fee2e2;
+        color: #dc2626;
+      }
 
-        .action-container {
-            display: inline-flex !important;
-            gap: 6px;
-        }
+      .action-container {
+        display: inline-flex !important;
+        gap: 6px;
+      }
 
-        .btn-action-edit,
-        .btn-action-delete {
-            width: 32px;
-            height: 32px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            border-radius: 4px;
-            color: #ffffff !important;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+      .btn-action-edit,
+      .btn-action-delete {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 4px;
+        color: #ffffff !important;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
 
-        .btn-action-edit {
-            background-color: #17a2b8;
-        }
+      .btn-action-edit {
+        background-color: #17a2b8;
+      }
 
-        .btn-action-edit:hover {
-            background-color: #138496;
-        }
+      .btn-action-edit:hover {
+        background-color: #138496;
+      }
 
-        .btn-action-delete {
-            background-color: #e02d1b;
-        }
+      .btn-action-delete {
+        background-color: #e02d1b;
+      }
 
-        .btn-action-delete:hover {
-            background-color: #c82333;
-        }
+      .btn-action-delete:hover {
+        background-color: #c82333;
+      }
 
-        .modal-header-siakad {
-            background-color: #4e73df;
-            color: #ffffff;
-        }
+      .modal-header-siakad {
+        background-color: #4e73df;
+        color: #ffffff;
+      }
     </style>
-</head>
+  </head>
 
-<body id="page-top">
+  <body id="page-top">
     <div id="wrapper">
-        <!-- Sidebar Identik & Sinkron -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Rental PS <br />admin</div>
-            </a>
+      <!-- Sidebar Identik & Sinkron -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+        >
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Rental PS <br />admin</div>
+        </a>
 
-            <hr class="sidebar-divider my-0" />
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+        <hr class="sidebar-divider my-0" />
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a
+          >
+        </li>
 
-            <hr class="sidebar-divider" />
-            <div class="sidebar-heading">KELOLA DATA</div>
+        <hr class="sidebar-divider" />
+        <div class="sidebar-heading">KELOLA DATA</div>
 
-            <!-- Master Asset (Aktif) -->
-            <li class="nav-item active">
-                <a class="nav-link" href="master_asset.html">
-                    <i class="fas fa-fw fa-boxes"></i>
-                    <span>Master Data Unit</span></a>
-            </li>
+        <!-- Master Asset (Aktif) -->
+        <li class="nav-item active">
+          <a class="nav-link" href="master_asset.html">
+            <i class="fas fa-fw fa-boxes"></i>
+            <span>Master Data Unit</span></a
+          >
+        </li>
 
-            <!-- Transaksi Peminjaman -->
-            <li class="nav-item">
-                <a class="nav-link" href="transaksi.html">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Transaksi Sewa</span></a>
-            </li>
+        <!-- Transaksi Peminjaman -->
+        <li class="nav-item">
+          <a class="nav-link" href="transaksi.html">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Transaksi Sewa</span></a
+          >
+        </li>
 
-            <hr class="sidebar-divider d-none d-md-block" />
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small font-weight-bold">Dr. Dosen
-                                    Pengampuh, M.Kom</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <!-- Page Content -->
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">
-                            <i class="fas fa-boxes text-primary mr-2"></i> Master Data Asset
-                            Kampus
-                        </h1>
-                        <button class="btn btn-primary font-weight-bold shadow-sm" data-toggle="modal"
-                            data-target="#modalTambahAsset">
-                            <i class="fas fa-plus-circle mr-1"></i> Tambah Unit PS
-                        </button>
-                    </div>
-
-                    <!-- Card Tabel Asset -->
-                    <div class="card shadow mb-4 border-0">
-                        <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                Daftar Unit Playstation
-                            </h6>
-                            <button class="btn btn-sm btn-outline-primary font-weight-bold" onclick="resetToApiData()">
-                                <i class="fas fa-sync-alt mr-1"></i> Refresh Data
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="tableAsset" width="100%"
-                                    cellspacing="0">
-                                    <thead class="thead-siakad">
-                                        <tr>
-                                            <th class="text-center" style="width: 5%">ID</th>
-                                            <th style="width: 15%">Nama Unit</th>
-                                            <th style="width: 25%">Tipe Console</th>
-                                            <th style="width: 15%">Harga / Jam</th>
-                                            <th style="width: 13%">Status</th>
-                                            <th class="text-center" style="width: 12%">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbodyAsset">
-                                        <tr>
-                                            <td colspan="6" class="text-center text-muted py-4">
-                                                Memuat data...
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Rental PlayStation API 2026</span>
-                    </div>
-                </div>
-            </footer>
+        <hr class="sidebar-divider d-none d-md-block" />
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+      </ul>
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          >
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                >
+                  <span
+                    class="mr-2 d-none d-lg-inline text-gray-600 small font-weight-bold"
+                    >Dr. Dosen Pengampuh, M.Kom</span
+                  >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/undraw_profile.svg"
+                  />
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Page Content -->
+          <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800 font-weight-bold">
+                <i class="fas fa-boxes text-primary mr-2"></i> Master Data Asset
+                Kampus
+              </h1>
+              <button
+                class="btn btn-primary font-weight-bold shadow-sm"
+                data-toggle="modal"
+                data-target="#modalTambahAsset"
+              >
+                <i class="fas fa-plus-circle mr-1"></i> Tambah Unit PS
+              </button>
+            </div>
+
+            <!-- Card Tabel Asset -->
+            <div class="card shadow mb-4 border-0">
+              <div
+                class="card-header py-3 bg-white d-flex justify-content-between align-items-center"
+              >
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Daftar Unit Playstation
+                </h6>
+                <button
+                  class="btn btn-sm btn-outline-primary font-weight-bold"
+                  onclick="resetToApiData()"
+                >
+                  <i class="fas fa-sync-alt mr-1"></i> Refresh Data
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered table-hover"
+                    id="tableAsset"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead class="thead-siakad">
+                      <tr>
+                        <th class="text-center" style="width: 5%">ID</th>
+                        <th style="width: 15%">Nama Unit</th>
+                        <th style="width: 25%">Tipe Console</th>
+                        <th style="width: 15%">Harga / Jam</th>
+                        <th style="width: 13%">Status</th>
+                        <th class="text-center" style="width: 12%">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbodyAsset">
+                      <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                          Memuat data...
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Rental PlayStation API 2026</span>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
 
     <!-- MODAL CREATE ASSET -->
-    <div class="modal fade" id="modalTambahAsset" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header modal-header-siakad">
-                    <h5 class="modal-title font-weight-bold">
-                        <i class="fas fa-plus-circle mr-1"></i> Form Tambah Unit Baru
-                    </h5>
-                    <button class="close text-white" type="button" data-dismiss="modal">
-                        &times;
-                    </button>
+    <div
+      class="modal fade"
+      id="modalTambahAsset"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+          <div class="modal-header modal-header-siakad">
+            <h5 class="modal-title font-weight-bold">
+              <i class="fas fa-plus-circle mr-1"></i> Form Tambah Unit Baru
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <form id="formTambahAsset">
+            <div class="modal-body p-4">
+              <div class="form-row mb-3">
+                <div class="form-group col-md-8">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Nama Unit</label
+                  >
+                  <input
+                    type="text"
+                    id="addnama_unit"
+                    class="form-control"
+                    placeholder="Contoh: PS5"
+                    required
+                  />
                 </div>
-                <form id="formTambahAsset">
-                    <div class="modal-body p-4">
-                        <div class="form-row mb-3">
-                            <div class="form-group col-md-8">
-                                <label class="small font-weight-bold text-gray-700">Nama Unit</label>
-                                <input type="text" id="addnama_unit" class="form-control" placeholder="Contoh: PS5"
-                                    required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Tipe Console</label>
-                                <select id="addtipe_ps" class="custom-select" required>
-                                    <option value="PS5">PS5</option>
-                                    <option value="PS4">PS4</option>
-                                    <option value="PS3">PS3</option>
-                                </select>
-                            </div>
-                            <!-- Kondisi: Hanya Baik dan Rusak -->
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Harga Sewa / Jam (Rp)</label>
-                                <input type="number" id="addharga_per_jam" class="form-control" placeholder="100000"
-                                    required />
-                            </div>
-                            <!-- Status: Hanya Tersedia dan Dipinjam -->
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Status Asset</label>
-                                <select id="addStatus" class="custom-select" required>
-                                    <option value="Tersedia" selected>Tersedia</option>
-                                    <option value="Disewa">Disewa</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer bg-light">
-                        <button class="btn btn-secondary px-4 font-weight-bold" type="button" data-dismiss="modal">
-                            Batal
-                        </button>
-                        <button class="btn btn-primary px-4 font-weight-bold" type="submit">
-                            <i class="fas fa-save mr-1"></i> Simpan ke Server
-                        </button>
-                    </div>
-                </form>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Tipe Console</label
+                  >
+                  <select id="addtipe_ps" class="custom-select" required>
+                    <option value="PS5">PS5</option>
+                    <option value="PS4">PS4</option>
+                    <option value="PS3">PS3</option>
+                  </select>
+                </div>
+                <!-- Kondisi: Hanya Baik dan Rusak -->
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Harga Sewa / Jam (Rp)</label
+                  >
+                  <input
+                    type="number"
+                    id="addharga_per_jam"
+                    class="form-control"
+                    placeholder="100000"
+                    required
+                  />
+                </div>
+                <!-- Status: Hanya Tersedia dan Dipinjam -->
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Status Asset</label
+                  >
+                  <select id="addStatus" class="custom-select" required>
+                    <option value="Tersedia" selected>Tersedia</option>
+                    <option value="Disewa">Disewa</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <div class="modal-footer bg-light">
+              <button
+                class="btn btn-secondary px-4 font-weight-bold"
+                type="button"
+                data-dismiss="modal"
+              >
+                Batal
+              </button>
+              <button
+                class="btn btn-primary px-4 font-weight-bold"
+                type="submit"
+              >
+                <i class="fas fa-save mr-1"></i> Simpan ke Server
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- MODAL EDIT/UPDATE ASSET -->
-    <div class="modal fade" id="modalEditAsset" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header modal-header-siakad">
-                    <h5 class="modal-title font-weight-bold">
-                        <i class="fas fa-edit mr-1"></i> Form Edit Data Unit
-                    </h5>
-                    <button class="close text-white" type="button" data-dismiss="modal">
-                        &times;
-                    </button>
+    <div
+      class="modal fade"
+      id="modalEditAsset"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+          <div class="modal-header modal-header-siakad">
+            <h5 class="modal-title font-weight-bold">
+              <i class="fas fa-edit mr-1"></i> Form Edit Data Unit
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <form id="formEditAsset">
+            <div class="modal-body p-4">
+              <input type="hidden" id="editId" />
+              <div class="form-row mb-3">
+                <div class="form-group col-md-8">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Nama Unit</label
+                  >
+                  <input
+                    type="text"
+                    id="editnama_unit"
+                    class="form-control"
+                    required
+                  />
                 </div>
-                <form id="formEditAsset">
-                    <div class="modal-body p-4">
-                        <input type="hidden" id="editId" />
-                        <div class="form-row mb-3">
-                            <div class="form-group col-md-8">
-                                <label class="small font-weight-bold text-gray-700">Nama Unit</label>
-                                <input type="text" id="editnama_unit" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Tipe Console</label>
-                                <select id="edittipe_ps" class="custom-select" required>
-                                    <option value="PS5">PS5</option>
-                                    <option value="PS4">PS4</option>
-                                    <option value="PS3">
-                                        PS3
-                                    </option>
-                                </select>
-                            </div>
-                            <!-- Kondisi: Hanya Baik dan Rusak -->
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Harga / Jam</label>
-                                <input type="number" id="editharga_per_jam" class="form-control" required />
-                            </div>
-                            <!-- Status: Hanya Tersedia dan Dipinjam -->
-                            <div class="form-group col-md-4">
-                                <label class="small font-weight-bold text-gray-700">Status Asset</label>
-                                <select id="editStatus" class="custom-select" required>
-                                    <option value="Tersedia">Tersedia</option>
-                                    <option value="Disewa">Disewa</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer bg-light">
-                        <button class="btn btn-secondary px-4 font-weight-bold" type="button" data-dismiss="modal">
-                            Batal
-                        </button>
-                        <button class="btn btn-primary px-4 font-weight-bold" type="submit">
-                            <i class="fas fa-save mr-1"></i> Perbarui Data
-                        </button>
-                    </div>
-                </form>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Tipe Console</label
+                  >
+                  <select id="edittipe_ps" class="custom-select" required>
+                    <option value="PS5">PS5</option>
+                    <option value="PS4">PS4</option>
+                    <option value="PS3">PS3</option>
+                  </select>
+                </div>
+                <!-- Kondisi: Hanya Baik dan Rusak -->
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Harga / Jam</label
+                  >
+                  <input
+                    type="number"
+                    id="editharga_per_jam"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <!-- Status: Hanya Tersedia dan Dipinjam -->
+                <div class="form-group col-md-4">
+                  <label class="small font-weight-bold text-gray-700"
+                    >Status Asset</label
+                  >
+                  <select id="editStatus" class="custom-select" required>
+                    <option value="Tersedia">Tersedia</option>
+                    <option value="Disewa">Disewa</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <div class="modal-footer bg-light">
+              <button
+                class="btn btn-secondary px-4 font-weight-bold"
+                type="button"
+                data-dismiss="modal"
+              >
+                Batal
+              </button>
+              <button
+                class="btn btn-primary px-4 font-weight-bold"
+                type="submit"
+              >
+                <i class="fas fa-save mr-1"></i> Perbarui Data
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Core Scripts -->
@@ -362,103 +470,106 @@
 
     <!-- ================= JAVASCRIPT CRUD================= -->
     <script>
-        // DAFTAR LINK ENDPOINT API:
-        const API_READ = "https://api.melangkah.my.id/unit/read.php";
-        const API_CREATE = "https://api.melangkah.my.id/unit/create.php";
-        const API_UPDATE = "https://api.melangkah.my.id/unit/update.php";
-        const API_DELETE = "https://api.melangkah.my.id/unit/delete.php";
-        const API_DETAIL = "https://api.melangkah.my.id/asset/detail.php";
+      // DAFTAR LINK ENDPOINT API:
+      const API_READ = "https://api.melangkah.my.id/unit/read.php";
+      const API_CREATE = "https://api.melangkah.my.id/unit/create.php";
+      const API_UPDATE = "https://api.melangkah.my.id/unit/update.php";
+      const API_DELETE = "https://api.melangkah.my.id/unit/delete.php";
+      const API_DETAIL = "https://api.melangkah.my.id/asset/detail.php";
 
-        const STORAGE_KEY = "SIAKAD_ASSET_DATA";
-        let assetList = [];
+      const STORAGE_KEY = "SIAKAD_ASSET_DATA";
+      let assetList = [];
 
-        // Data bawaan standar
-        const defaultAssets = [
-            {
-                id: 1,
-                kode_asset: "AST-001",
-                nama_asset: "Proyektor Epson EB-X400",
-                kategori: "Elektronik",
-                kondisi: "Baik",
-                status: "Tersedia",
-            },
-            {
-                id: 2,
-                kode_asset: "AST-002",
-                nama_asset: "Laptop Asus ExpertBook Core i5",
-                kategori: "Elektronik",
-                kondisi: "Baik",
-                status: "Dipinjam",
-            },
-            {
-                id: 3,
-                kode_asset: "AST-003",
-                nama_asset: "Kamera DSLR Canon EOS 3000D",
-                kategori: "Perlengkapan Acara",
-                kondisi: "Rusak",
-                status: "Tersedia",
-            },
-        ];
+      // Data bawaan standar
+      const defaultAssets = [
+        {
+          id: 1,
+          kode_asset: "AST-001",
+          nama_asset: "Proyektor Epson EB-X400",
+          kategori: "Elektronik",
+          kondisi: "Baik",
+          status: "Tersedia",
+        },
+        {
+          id: 2,
+          kode_asset: "AST-002",
+          nama_asset: "Laptop Asus ExpertBook Core i5",
+          kategori: "Elektronik",
+          kondisi: "Baik",
+          status: "Dipinjam",
+        },
+        {
+          id: 3,
+          kode_asset: "AST-003",
+          nama_asset: "Kamera DSLR Canon EOS 3000D",
+          kategori: "Perlengkapan Acara",
+          kondisi: "Rusak",
+          status: "Tersedia",
+        },
+      ];
 
-        // Simpan ke storage lokal agar saat refresh tidak kembali ke semula
-        function saveToStorage() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(assetList));
+      // Simpan ke storage lokal agar saat refresh tidak kembali ke semula
+      function saveToStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(assetList));
+      }
+
+      // 1. READ DATA
+      function loadDataAsset() {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          assetList = JSON.parse(savedData);
+          renderTable(assetList);
+        } else {
+          fetch(API_READ)
+            .then((response) => response.json())
+            .then((data) => {
+              let apiItems = Array.isArray(data) ? data : data.data || [];
+              if (apiItems.length > 0) {
+                // Normalisasi agar kondisi & status sesuai 2 pilihan
+                assetList = apiItems.map((item) => ({
+                  id_unit: item.id_unit || item.id_unit,
+                  nama_unit: item.nama_unit || item.nama,
+                  tipe_ps: item.tipe_ps || "PS5",
+                  harga_per_jam: item.harga_per_jam || item.harga_per_jam,
+                  status:
+                    item.status && item.status.toLowerCase().includes("disewa")
+                      ? "Disewa"
+                      : "Tersedia",
+                }));
+              } else {
+                assetList = defaultAssets;
+              }
+              saveToStorage();
+              renderTable(assetList);
+            })
+            .catch(() => {
+              assetList = defaultAssets;
+              saveToStorage();
+              renderTable(assetList);
+            });
         }
+      }
 
-        // 1. READ DATA
-        function loadDataAsset() {
-            const savedData = localStorage.getItem(STORAGE_KEY);
-            if (savedData) {
-                assetList = JSON.parse(savedData);
-                renderTable(assetList);
-            } else {
-                fetch(API_READ)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        let apiItems = Array.isArray(data) ? data : data.data || [];
-                        if (apiItems.length > 0) {
-                            // Normalisasi agar kondisi & status sesuai 2 pilihan
-                            assetList = apiItems.map((item) => ({
-                                id_unit: item.id_unit || item.id_unit,
-                                nama_unit: item.nama_unit || item.nama,
-                                tipe_ps: item.tipe_ps || "PS5",
-                                harga_per_jam: item.harga_per_jam || item.harga_per_jam,
-                                status:
-                                    item.status && item.status.toLowerCase().includes("disewa")
-                                        ? "Disewa"
-                                        : "Tersedia",
-                            }));
-                        } else {
-                            assetList = defaultAssets;
-                        }
-                        saveToStorage();
-                        renderTable(assetList);
-                    })
-                    .catch(() => {
-                        assetList = defaultAssets;
-                        saveToStorage();
-                        renderTable(assetList);
-                    });
-            }
-        }
+      // Reset manual jika ingin sync ulang dari API
+      function resetToApiData() {
+        localStorage.removeItem(STORAGE_KEY);
+        loadDataAsset();
+        alert("Data di-refresh ulang dari API!");
+      }
 
-        // Reset manual jika ingin sync ulang dari API
-        function resetToApiData() {
-            localStorage.removeItem(STORAGE_KEY);
-            loadDataAsset();
-            alert("Data di-refresh ulang dari API!");
-        }
+      function renderTable(data) {
+        let html = "";
+        if (!data || data.length === 0) {
+          html = `<tr><td colspan="6" class="text-center text-muted py-3">Tidak ada data Unit ditemukan.</td></tr>`;
+        } else {
+          data.forEach((item, index) => {
+            let badgeClass =
+              item.status && item.status.toLowerCase() === "disewa"
+                ? "badge-disewa"
+                : "badge-tersedia";
+            let currentId = item.id_unit || item.id;
 
-        function renderTable(data) {
-            let html = "";
-            if (!data || data.length === 0) {
-                html = `<tr><td colspan="6" class="text-center text-muted py-3">Tidak ada data Unit ditemukan.</td></tr>`;
-            } else {
-                data.forEach((item, index) => {
-                    let badgeClass = item.status && item.status.toLowerCase() === "disewa" ? "badge-disewa" : "badge-tersedia";
-                    let currentId = item.id_unit || item.id;
-
-                    html += `
+            html += `
                 <tr>
                     <td class="text-center">${index + 1}</td>
                     <td class="font-weight-bold text-dark">${item.nama_unit}</td>
@@ -477,145 +588,142 @@
                     </td>
                 </tr>
             `;
-                });
-            }
-            $("#tbodyAsset").html(html);
+          });
         }
+        $("#tbodyAsset").html(html);
+      }
 
-        // 2. CREATE DATA (create.php)
-        $("#formTambahAsset").on("submit", async function (e) {
-            e.preventDefault();
+      // 2. CREATE DATA (create.php)
+      $("#formTambahAsset").on("submit", async function (e) {
+        e.preventDefault();
 
-            const payload = {
-                nama_unit: $("#addnama_unit").val(),
-                tipe_ps: $("#addtipe_ps").val(),
-                harga_per_jam: $("#addharga_per_jam").val(),
-                status: $("#addStatus").val(),
-            };
+        const payload = {
+          nama_unit: $("#addnama_unit").val(),
+          tipe_ps: $("#addtipe_ps").val(),
+          harga_per_jam: $("#addharga_per_jam").val(),
+          status: $("#addStatus").val(),
+        };
 
-            try {
-                const response = await fetch(API_CREATE, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(payload),
-                });
+        try {
+          const response = await fetch(API_CREATE, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
 
-                const result = await response.json();
-                console.log("Respon API:", result);
+          const result = await response.json();
+          console.log("Respon API:", result);
 
-                if (response.ok) {
-                    alert("Data Unit Berhasil Ditambahkan ke Server!");
+          if (response.ok) {
+            alert("Data Unit Berhasil Ditambahkan ke Server!");
 
-                    localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(STORAGE_KEY);
 
-                    $("#modalTambahAsset").modal("hide");
-                    $("#formTambahAsset")[0].reset();
+            $("#modalTambahAsset").modal("hide");
+            $("#formTambahAsset")[0].reset();
 
-                    loadDataAsset();
-                } else {
-                    alert(
-                        "Gagal menambahkan ke server: " + (result.message || "Error"),
-                    );
-                }
-            } catch (error) {
-                console.error("Error kirim data:", error);
-            }
-        });
-
-        // 3. EDIT & UPDATE DATA 
-        function openEditModal(id) {
-          
-            const item = assetList.find((a) => (a.id_unit || a.id) == id);
-
-            if (item) {
-                $("#editId").val(item.id_unit || item.id);
-                $("#editnama_unit").val(item.nama_unit);
-                $("#edittipe_ps").val(item.tipe_ps || "PS5");
-                $("#editharga_per_jam").val(item.harga_per_jam);
-
-                const statusVal = (item.status && item.status.toLowerCase().includes("sewa"))
-                    ? "Disewa"
-                    : "Tersedia";
-                $("#editStatus").val(statusVal);
-
-                $("#modalEditAsset").modal("show");
-            } else {
-                alert("Data tidak ditemukan!");
-            }
-        }
-
-        // SIMPAN PERUBAHAN KE SERVER (update.php)
-        $("#formEditAsset").on("submit", async function (e) {
-            e.preventDefault();
-
-            const id = $("#editId").val();
-
-            const updatePayload = {
-                id_unit: id,
-                id: id,
-                nama_unit: $("#editnama_unit").val(),
-                tipe_ps: $("#edittipe_ps").val(),
-                harga_per_jam: $("#editharga_per_jam").val(),
-                status: $("#editStatus").val(),
-            };
-
-            try {
-                
-                const response = await fetch(API_UPDATE, {
-                    method: "POST", 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(updatePayload)
-                });
-
-                const result = await response.json();
-                console.log("Respon Update:", result);
-
-                if (response.ok) {
-                    alert("Data Unit Berhasil Diperbarui!");
-
-                    localStorage.removeItem(STORAGE_KEY);
-
-                    $("#modalEditAsset").modal("hide");
-
-                    loadDataAsset();
-                } else {
-                    alert("Gagal update data di server: " + (result.message || "Error"));
-                }
-            } catch (error) {
-                console.error("Error update:", error);
-                alert("Terjadi kesalahan saat memperbarui data!");
-            }
-        });
-
-        // 4. DELETE DATA (delete.php)
-        async function hapusAsset(id) {
-            if (confirm("Apakah Anda yakin ingin menghapus data asset ini dari server?")) {
-                try {
-                    let fd = new FormData();
-                    fd.append("id", id);
-
-                    const res = await fetch(`${API_DELETE}?id=${id}`, {
-                        method: "POST",
-                        body: fd
-                    });
-                    const balasan = await res.text();
-
-                    alert("Balasan Server:\n" + balasan);
-                    loadDataAsset();
-                } catch (err) {
-                    alert("Gagal hapus: " + err.message);
-                }
-            }
-        }
-
-        $(document).ready(function () {
             loadDataAsset();
-        });
-    </script>
-</body>
+          } else {
+            alert(
+              "Gagal menambahkan ke server: " + (result.message || "Error"),
+            );
+          }
+        } catch (error) {
+          console.error("Error kirim data:", error);
+        }
+      });
 
+      // 3. EDIT & UPDATE DATA
+      function openEditModal(id) {
+        const item = assetList.find((a) => (a.id_unit || a.id) == id);
+
+        if (item) {
+          $("#editId").val(item.id_unit || item.id);
+          $("#editnama_unit").val(item.nama_unit);
+          $("#edittipe_ps").val(item.tipe_ps || "PS5");
+          $("#editharga_per_jam").val(item.harga_per_jam);
+
+          const statusVal =
+            item.status && item.status.toLowerCase().includes("sewa")
+              ? "Disewa"
+              : "Tersedia";
+          $("#editStatus").val(statusVal);
+
+          $("#modalEditAsset").modal("show");
+        } else {
+          alert("Data tidak ditemukan!");
+        }
+      }
+
+      // SIMPAN PERUBAHAN KE SERVER (update.php)
+      $("#formEditAsset").on("submit", async function (e) {
+        e.preventDefault();
+
+        const id = $("#editId").val();
+
+        const updatePayload = {
+          id_unit: id,
+          id: id,
+          nama_unit: $("#editnama_unit").val(),
+          tipe_ps: $("#edittipe_ps").val(),
+          harga_per_jam: $("#editharga_per_jam").val(),
+          status: $("#editStatus").val(),
+        };
+
+        try {
+          const response = await fetch(API_UPDATE, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatePayload),
+          });
+
+          const result = await response.json();
+          console.log("Respon Update:", result);
+
+          if (response.ok) {
+            alert("Data Unit Berhasil Diperbarui!");
+
+            localStorage.removeItem(STORAGE_KEY);
+
+            $("#modalEditAsset").modal("hide");
+
+            loadDataAsset();
+          } else {
+            alert(
+              "Gagal update data di server: " + (result.message || "Error"),
+            );
+          }
+        } catch (error) {
+          console.error("Error update:", error);
+          alert("Terjadi kesalahan saat memperbarui data!");
+        }
+      });
+
+      // 4. DELETE DATA (delete.php)
+      function hapusDenganFormData(id) {
+        let fd = new FormData();
+        fd.append("id", id);
+        fd.append("id_unit", id);
+
+        fetch(`${API_DELETE}?id=${id}&id_unit=${id}`, {
+          method: "POST",
+          body: fd,
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            alert("Data berhasil dihapus!");
+            localStorage.removeItem(STORAGE_KEY);
+            loadDataAsset();
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Gagal koneksi ke server untuk menghapus data!");
+          });
+      }
+    </script>
+  </body>
 </html>
